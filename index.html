@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS - Estratégia Digital & Posicionamento</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        leadGray: '#4A4A4A',
+                        copperGold: '#C19A6B',
+                        offWhite: '#F4F4F4',
+                        lightGray: '#D1D1D1',
+                        petrolBlue: '#003B46',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Evita que o menu fixo cubra o título das seções */
+        }
+
+        body {
+            background-color: #4A4A4A;
+            color: #F4F4F4;
+            overflow-x: hidden;
+        }
+
+        /* Animações Core */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Máscara de fusão suave para a base da imagem */
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+
+        /* Oculta scrollbar para o Slider Mobile (Block A) */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Classes Core de Animação (Scroll Reveal) */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-up.active,
+        .reveal-left.active,
+        .reveal-right.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* Utilitários antigos mantidos para compatibilidade com a Seção 2 e 3 */
+        .reveal-item {
+            /* Alias para reveal-up */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays */
+        .reveal-delay-100 {
+            transition-delay: 0.15s;
+        }
+
+        .reveal-delay-200 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-300 {
+            transition-delay: 0.45s;
+        }
+
+        .reveal-delay-400 {
+            transition-delay: 0.6s;
+        }
+
+        /* Define a largura base do card para não quebrar a legibilidade */
+        .swiper-slide {
+            width: 85%;
+            /* Mobile: Mostra 1 inteiro + pedaço do próximo */
+            max-width: 400px;
+            transition: all 0.5s ease;
+        }
+
+        /* Desktop: Largura dos cards */
+        @media (min-width: 768px) {
+            .swiper-slide {
+                width: 380px;
+            }
+        }
+
+        /* Efeito High-End 3D: Foco no Slide Central (Se usar slidesPerView: auto com centralização) */
+        .swiper-slide {
+            opacity: 0.5;
+            transform: scale(0.92);
+        }
+
+        .swiper-slide-active,
+        .swiper-slide-duplicate-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Customização dos Dots de Paginação */
+        .swiper-pagination-bullet {
+            background: #D1D1D1;
+            opacity: 0.3;
+            width: 10px;
+            height: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #003B46;
+            /* Petrol Blue ativo */
+            opacity: 1;
+            width: 24px;
+            /* Dot esticado moderno */
+            border-radius: 8px;
+        }
+
+        /* Animação Customizada de Pulso a cada 5 segundos */
+        /* O botão pulsa rapidamente e aguarda, sem ser invasivo */
+        .btn-pulse-custom {
+            animation: pulse-attention 5s infinite;
+        }
+
+        @keyframes pulse-attention {
+
+            0%,
+            90%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 20px rgba(0, 59, 70, 0.3);
+            }
+
+            94% {
+                transform: scale(1.03);
+                box-shadow: 0 15px 25px rgba(0, 59, 70, 0.5);
+            }
+
+            97% {
+                transform: scale(0.98);
+                box-shadow: 0 5px 15px rgba(0, 59, 70, 0.2);
+            }
+        }
+
+        /* Efeito Glow Pulse do Botão Laranja (Chamada Final) */
+        .btn-glow-pulse {
+            animation: pulse-glow-orange 2.5s infinite;
+        }
+
+        @keyframes pulse-glow-orange {
+            0% {
+                box-shadow: 0 0 0 0 rgba(193, 154, 107, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(193, 154, 107, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(193, 154, 107, 0);
+            }
+        }
+
+        /* Efeito Float para o Badge de Autoridade */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Efeito de Varredura de Luz (Shine) no Botão CTA */
+        .premium-btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine-sweep 4s infinite;
+            z-index: 1;
+        }
+        @keyframes shine-sweep {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+
+    <header id="navbar" class="fixed top-0 left-0 w-full z-[100] transition-all duration-500 bg-transparent border-b border-transparent">
+        <div class="container mx-auto px-6 lg:px-12 max-w-[1400px] h-20 flex justify-between items-center">
+            
+            <a href="#" class="font-serif italic text-2xl md:text-3xl tracking-widest text-offWhite hover:text-copperGold transition-colors z-50 relative">
+                TCS
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#problema-solucao" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">O Problema</a>
+                <a href="#transformacao" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">O Método</a>
+                <a href="#sobre-a-mentora" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">A Mentora</a>
+                <a href="#prova-social" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">Resultados</a>
+                <a href="#faq" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-6 z-50 relative">
+                <a href="#oferta" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 border border-copperGold text-copperGold font-sans text-xs font-bold uppercase tracking-widest rounded-md hover:bg-copperGold hover:text-white transition-all duration-300">
+                    Aplicar Agora
+                </a>
+                
+                <button id="mobile-menu-btn" class="lg:hidden text-offWhite hover:text-copperGold focus:outline-none transition-colors">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-overlay" class="fixed inset-0 bg-leadGray/95 backdrop-blur-xl flex flex-col justify-center items-center opacity-0 pointer-events-none transition-opacity duration-500 z-40">
+            <nav class="flex flex-col items-center gap-8 text-center w-full px-6">
+                <a href="#problema-solucao" class="mobile-link font-serif italic text-3xl text-offWhite hover:text-copperGold transition-colors">O Problema</a>
+                <a href="#transformacao" class="mobile-link font-serif italic text-3xl text-offWhite hover:text-copperGold transition-colors">O Método</a>
+                <a href="#sobre-a-mentora" class="mobile-link font-serif italic text-3xl text-offWhite hover:text-copperGold transition-colors">A Mentora</a>
+                <a href="#prova-social" class="mobile-link font-serif italic text-3xl text-offWhite hover:text-copperGold transition-colors">Resultados</a>
+                <a href="#faq" class="mobile-link font-serif italic text-3xl text-offWhite hover:text-copperGold transition-colors">FAQ</a>
+                <div class="w-12 h-px bg-copperGold/30 my-2"></div>
+                <a href="#oferta" class="mobile-link bg-copperGold text-white font-sans font-bold text-sm uppercase tracking-widest px-8 py-4 rounded-lg w-full max-w-[250px] shadow-lg">
+                    Aplicar Agora
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative w-full min-h-screen flex items-center justify-center bg-leadGray overflow-hidden pt-20 md:pt-0">
+
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#5A5A5A]/40 via-leadGray to-leadGray z-0"></div>
+        <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay z-0" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10 h-full">
+            <div class="flex flex-col md:flex-row items-center justify-between h-full w-full gap-8 lg:gap-12">
+
+                <div class="order-2 md:order-1 w-full md:w-[55%] lg:w-[50%] flex flex-col items-center md:items-start text-center md:text-left z-20 pb-16 md:pb-0">
+
+                    <div class="flex items-center gap-3 mb-5 md:mb-6 fade-in-up">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-copperGold opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-copperGold"></span>
+                        </span>
+                        <span class="font-sans font-bold text-copperGold text-xs md:text-sm tracking-[0.25em] uppercase">
+                            Estratégia Digital & Posicionamento
+                        </span>
+                    </div>
+
+                    <h1 class="font-serif text-offWhite text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] leading-[1.1] md:leading-[1.15] font-medium mb-6 md:mb-8 fade-in-up delay-100">
+                        Construa uma presença digital que <br class="hidden md:block">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-copperGold via-[#e3c19b] to-copperGold italic pr-2">
+                            trabalha por você,
+                        </span><br class="hidden md:block"> não contra você.
+                    </h1>
+
+                    <p class="font-sans font-light text-lightGray text-base md:text-lg lg:text-xl leading-relaxed mb-10 md:mb-12 max-w-[90%] md:max-w-lg fade-in-up delay-200">
+                        Posicionamento inteligente, atração de clientes de alto valor e a estruturação de um negócio altamente lucrativo focado em escala.
+                    </p>
+
+                    <div class="w-full flex flex-col sm:flex-row items-center md:items-start gap-6 md:gap-8 fade-in-up delay-300">
+                        
+                        <a href="#aplicacao" class="premium-btn-shine group relative overflow-hidden flex items-center justify-center w-full sm:w-auto bg-petrolBlue text-white font-sans font-bold text-sm md:text-base px-10 py-5 rounded-lg shadow-[0_10px_30px_rgba(0,59,70,0.4)] transition-all duration-300 hover:-translate-y-1">
+                            <span class="relative z-10 tracking-widest uppercase text-shadow-sm">Conhecer a Mentoria</span>
+                            <i class="fa-solid fa-arrow-right ml-3 relative z-10 transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+
+                        <div class="flex items-center gap-3 hidden sm:flex">
+                            <div class="flex -space-x-3">
+                                <img class="w-10 h-10 rounded-full border-2 border-leadGray object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" alt="Cliente TCS">
+                                <img class="w-10 h-10 rounded-full border-2 border-leadGray object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop" alt="Cliente TCS">
+                                <div class="w-10 h-10 rounded-full border-2 border-leadGray bg-copperGold flex items-center justify-center text-white text-[10px] font-bold">+150</div>
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <div class="flex text-copperGold text-[10px]"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                <span class="text-xs text-lightGray font-sans font-light mt-0.5">Marcas Elevadas</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="order-1 md:order-2 w-full md:w-[45%] lg:w-[50%] h-[450px] md:h-[650px] lg:h-[850px] flex items-end justify-center relative fade-in-up delay-400 pointer-events-none mt-4 md:mt-0">
+
+                    <div class="absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[480px] md:h-[480px] border border-copperGold/10 rounded-full z-0 animate-[spin_30s_linear_infinite]"></div>
+                    <div class="absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] md:w-[420px] md:h-[420px] border border-dashed border-offWhite/5 rounded-full z-0 animate-[spin_40s_linear_infinite_reverse]"></div>
+
+                    <div class="absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] md:w-[350px] md:h-[350px] bg-copperGold/15 blur-[90px] rounded-full z-0 animate-pulse"></div>
+
+                    <div class="absolute top-1/4 -left-4 lg:-left-12 z-30 bg-white/5 backdrop-blur-xl border border-white/20 px-5 py-4 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.3)] animate-float hidden md:flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-petrolBlue to-[#00252c] rounded-full flex items-center justify-center text-copperGold shadow-inner">
+                            <i class="fa-solid fa-crown text-lg"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-offWhite font-serif font-bold text-base leading-tight">Design High-End</p>
+                            <p class="text-copperGold text-[10px] uppercase tracking-[0.2em] font-bold mt-1">Alta Conversão</p>
+                        </div>
+                    </div>
+
+                    <img src="1.jpg" alt="Especialista TCS" class="relative z-20 h-full w-auto object-cover object-top hero-mask drop-shadow-2xl grayscale-[15%] contrast-125">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="problema-solucao" class="relative w-full py-24 bg-leadGray overflow-hidden z-10">
+
+        <div
+            class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#5A5A5A]/20 via-leadGray to-leadGray z-0 pointer-events-none">
+        </div>
+        <div class="absolute inset-0 opacity-[0.03] z-0 pointer-events-none"
+            style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+
+            <div class="mb-20">
+                <h2
+                    class="font-serif text-center text-offWhite text-3xl md:text-4xl lg:text-5xl leading-tight mb-12 lg:mb-16 reveal-item">
+                    Você vive ocupada, mas o seu <br class="hidden md:block">
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-copperGold to-[#d4b48f] italic">perfil
+                        não cresce e não vende.</span>
+                </h2>
+
+                <div
+                    class="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory md:overflow-visible pb-8 md:pb-0 hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+
+                    <div
+                        class="snap-center min-w-[85vw] md:min-w-0 flex flex-col justify-start bg-[rgba(0,0,0,0.2)] backdrop-blur-[10px] border border-offWhite/10 rounded-2xl p-8 lg:p-10 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-petrolBlue group reveal-item reveal-delay-100 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-petrolBlue/0 to-transparent group-hover:via-petrolBlue/50 transition-all duration-500">
+                        </div>
+                        <div
+                            class="w-12 h-12 flex items-center justify-center rounded-full bg-leadGray border border-copperGold/20 mb-6">
+                            <i class="fa-solid fa-arrow-rotate-right text-copperGold text-xl"></i>
+                        </div>
+                        <h3 class="font-sans font-semibold text-offWhite text-xl mb-4">A Dor da Esteira</h3>
+                        <p class="font-sans font-light text-lightGray text-base leading-relaxed">
+                            Cansada de postar todos os dias, seguir todas as "trends" e criar conteúdo sem ver o retorno
+                            financeiro correspondente na sua conta bancária.
+                        </p>
+                    </div>
+
+                    <div
+                        class="snap-center min-w-[85vw] md:min-w-0 flex flex-col justify-start bg-[rgba(0,0,0,0.2)] backdrop-blur-[10px] border border-offWhite/10 rounded-2xl p-8 lg:p-10 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-copperGold group reveal-item reveal-delay-200 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-copperGold/0 to-transparent group-hover:via-copperGold/50 transition-all duration-500">
+                        </div>
+                        <div
+                            class="w-12 h-12 flex items-center justify-center rounded-full bg-leadGray border border-copperGold/20 mb-6">
+                            <i class="fa-solid fa-gem text-copperGold text-xl"></i>
+                        </div>
+                        <h3 class="font-sans font-semibold text-offWhite text-xl mb-4">O Amadorismo Digital</h3>
+                        <p class="font-sans font-light text-lightGray text-base leading-relaxed">
+                            Sente que a sua imagem digital, seu design e sua comunicação atual não refletem a qualidade
+                            premium real do serviço que você entrega no presencial.
+                        </p>
+                    </div>
+
+                    <div
+                        class="snap-center min-w-[85vw] md:min-w-0 flex flex-col justify-start bg-[rgba(0,0,0,0.2)] backdrop-blur-[10px] border border-offWhite/10 rounded-2xl p-8 lg:p-10 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-petrolBlue group reveal-item reveal-delay-300 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-petrolBlue/0 to-transparent group-hover:via-petrolBlue/50 transition-all duration-500">
+                        </div>
+                        <div
+                            class="w-12 h-12 flex items-center justify-center rounded-full bg-leadGray border border-copperGold/20 mb-6">
+                            <i class="fa-solid fa-hourglass-half text-copperGold text-xl"></i>
+                        </div>
+                        <h3 class="font-sans font-semibold text-offWhite text-xl mb-4">O Overload</h3>
+                        <p class="font-sans font-light text-lightGray text-base leading-relaxed">
+                            Passa horas do seu dia criando conteúdo, gerenciando redes e não tem tempo para focar no que
+                            realmente importa: atender seus clientes e escalar o negócio.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div
+                class="mt-24 lg:mt-32 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16 bg-[#3A3A3A]/40 backdrop-blur-md border border-offWhite/5 rounded-[2rem] p-8 lg:p-14 shadow-[0_0_50px_rgba(0,59,70,0.15)] reveal-item">
+
+                <div class="w-full lg:w-[45%] flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <h3 class="font-sans font-bold text-copperGold text-xs md:text-sm tracking-[0.2em] uppercase mb-4">
+                        A Estratégia Substitui o Esforço
+                    </h3>
+                    <h4 class="font-serif text-3xl md:text-4xl text-offWhite mb-6 leading-tight">
+                        Retome o controle da sua <span class="italic text-copperGold">narrativa.</span>
+                    </h4>
+                    <p class="font-sans font-light text-lightGray text-base md:text-lg leading-relaxed mb-10">
+                        O Método TCS não é sobre criar mais tarefas para o seu dia. É sobre retirar o peso da execução
+                        operacional das suas costas e implementar um ecossistema digital elegante, com design premium e
+                        fluxos de vendas automatizados que convertem enquanto você foca no seu *core business*.
+                    </p>
+
+                    <a href="#metodo"
+                        class="group inline-flex items-center text-copperGold font-sans font-semibold uppercase tracking-widest text-sm md:text-base hover:text-offWhite transition-colors duration-300">
+                        Entenda como funciona o Método
+                        <span
+                            class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-copperGold/30 ml-3 group-hover:bg-petrolBlue group-hover:border-petrolBlue group-hover:text-white transition-all duration-300">
+                            <i
+                                class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="w-full lg:w-[55%] relative group">
+                    <div
+                        class="absolute inset-0 bg-petrolBlue/20 blur-[60px] rounded-full z-0 transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+                        alt="Método TCS Ecossistema Digital"
+                        class="relative z-10 w-full h-[300px] md:h-[400px] object-cover rounded-2xl border border-offWhite/10 shadow-2xl grayscale-[30%] group-hover:grayscale-0 transition-all duration-500">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="transformacao" class="relative w-full py-24 bg-offWhite overflow-hidden z-10">
+
+        <div class="absolute top-0 right-0 w-64 h-64 bg-copperGold/5 rounded-bl-full pointer-events-none z-0"></div>
+
+        <div class="container mx-auto px-6 lg:px-12 max-w-[1200px] relative z-10">
+
+            <div class="text-center mb-16 md:mb-20 reveal-item">
+                <h2 class="font-serif text-leadGray text-3xl md:text-4xl lg:text-5xl font-medium mb-6 leading-tight">
+                    O que acontece quando sua marca <br class="hidden md:block">
+                    <span class="italic text-copperGold">entra no eixo?</span>
+                </h2>
+                <p class="font-sans font-normal text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    A transição definitiva de uma rotina exausta para um posicionamento estratégico que atrai, conecta e
+                    vende no automático.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+
+                <div
+                    class="bg-white rounded-xl p-8 lg:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b-4 border-transparent hover:border-copperGold transition-all duration-300 group reveal-item reveal-delay-100 flex flex-col justify-start text-left relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 rounded-full bg-offWhite flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-petrolBlue/5">
+                        <i
+                            class="fa-regular fa-clock text-petrolBlue text-2xl transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-[15deg]"></i>
+                    </div>
+                    <h3 class="font-sans font-semibold text-leadGray text-xl mb-3">
+                        Tempo Recuperado
+                    </h3>
+                    <p class="font-sans font-light text-gray-500 text-base leading-relaxed">
+                        Delegue a execução maçante e volte a focar no que você faz de melhor: atender seus clientes,
+                        criar experiências incríveis e expandir seu negócio de forma saudável.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl p-8 lg:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b-4 border-transparent hover:border-petrolBlue transition-all duration-300 group reveal-item reveal-delay-200 flex flex-col justify-start text-left relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 rounded-full bg-offWhite flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-copperGold/5">
+                        <i
+                            class="fa-regular fa-gem text-copperGold text-2xl transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-[15deg]"></i>
+                    </div>
+                    <h3 class="font-sans font-semibold text-leadGray text-xl mb-3">
+                        Percepção Premium (High-End)
+                    </h3>
+                    <p class="font-sans font-light text-gray-500 text-base leading-relaxed">
+                        Sua vitrine digital finalmente refletirá a qualidade real e o altíssimo valor do serviço que
+                        você entrega no *off-line*, atraindo clientes qualificados que não pedem desconto.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl p-8 lg:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b-4 border-transparent hover:border-copperGold transition-all duration-300 group reveal-item reveal-delay-300 flex flex-col justify-start text-left relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 rounded-full bg-offWhite flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-petrolBlue/5">
+                        <i
+                            class="fa-solid fa-crosshairs text-petrolBlue text-2xl transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-rotate-[15deg]"></i>
+                    </div>
+                    <h3 class="font-sans font-semibold text-leadGray text-xl mb-3">
+                        Fim do 'Postar por Postar'
+                    </h3>
+                    <p class="font-sans font-light text-gray-500 text-base leading-relaxed">
+                        Esqueça a panfletagem digital. Cada conteúdo, destaque e link na bio terá uma função estratégica
+                        e um Alvo Claro: guiar seguidores por uma jornada e convertê-los em compradores.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-xl p-8 lg:p-10 shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-b-4 border-transparent hover:border-petrolBlue transition-all duration-300 group reveal-item reveal-delay-400 flex flex-col justify-start text-left relative overflow-hidden">
+                    <div
+                        class="w-14 h-14 rounded-full bg-offWhite flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-copperGold/5">
+                        <i
+                            class="fa-regular fa-compass text-copperGold text-2xl transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-[15deg]"></i>
+                    </div>
+                    <h3 class="font-sans font-semibold text-leadGray text-xl mb-3">
+                        Direção e Clareza
+                    </h3>
+                    <p class="font-sans font-light text-gray-500 text-base leading-relaxed">
+                        Você terá um plano de ação estruturado, previsível e mensurável. Você nunca mais vai acordar
+                        pensando, exausta: *"O que eu preciso postar hoje para vender?"*
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="mt-16 text-center reveal-item reveal-delay-400">
+                <a href="#aplicacao"
+                    class="group inline-flex items-center text-leadGray font-sans font-bold uppercase tracking-widest text-sm hover:text-petrolBlue transition-colors duration-300 border-b border-leadGray hover:border-petrolBlue pb-1">
+                    Conhecer a Mentoria TCS
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="qualificacao" class="relative w-full py-24 md:py-32 bg-leadGray overflow-hidden z-10">
+
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.02]"
+            style="background-image: linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px); background-size: 4rem 4rem;">
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 max-w-[1100px] relative z-10">
+
+            <div class="text-center mb-16 md:mb-20">
+                <h2
+                    class="font-serif text-offWhite text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight reveal-up">
+                    A Assessoria TCS não é <br class="hidden md:block">
+                    <span class="italic text-copperGold">para todo mundo.</span>
+                </h2>
+                <p
+                    class="font-sans font-light text-lightGray text-base md:text-lg max-w-2xl mx-auto reveal-up reveal-delay-100">
+                    Entenda se o seu momento de negócio atual está alinhado com a nossa metodologia de trabalho.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+
+                <div
+                    class="bg-[rgba(0,0,0,0.15)] backdrop-blur-md border border-offWhite/5 rounded-2xl p-8 lg:p-10 reveal-left flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:border-copperGold/30 transition-colors duration-500">
+
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-10 h-10 rounded-full bg-copperGold/10 flex items-center justify-center border border-copperGold/20 shrink-0">
+                            <i class="fa-solid fa-check text-copperGold text-lg"></i>
+                        </div>
+                        <h3 class="font-sans font-semibold text-copperGold text-xl md:text-2xl">
+                            É perfeito para você que...
+                        </h3>
+                    </div>
+
+                    <ul class="space-y-6 flex-grow">
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-check text-copperGold mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-offWhite text-base leading-[1.6]">
+                                É empreendedora e já não dá conta de ser a "faz-tudo" da sua empresa.
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-check text-copperGold mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-offWhite text-base leading-[1.6]">
+                                Tem um serviço/produto excelente, mas o seu perfil no Instagram não transmite essa
+                                qualidade.
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-check text-copperGold mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-offWhite text-base leading-[1.6]">
+                                Quer atrair clientes dispostos a pagar o seu valor real, sem brigar por preço.
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-check text-copperGold mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-offWhite text-base leading-[1.6]">
+                                Entende que posicionamento digital exige estratégia, e não apenas "postar por postar".
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-[rgba(0,0,0,0.15)] backdrop-blur-md border border-offWhite/5 rounded-2xl p-8 lg:p-10 reveal-right reveal-delay-200 flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.1)] hover:border-offWhite/10 transition-colors duration-500">
+
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-10 h-10 rounded-full bg-lightGray/5 flex items-center justify-center border border-lightGray/10 shrink-0">
+                            <i class="fa-solid fa-xmark text-lightGray/60 text-lg"></i>
+                        </div>
+                        <h3 class="font-sans font-semibold text-lightGray text-xl md:text-2xl">
+                            Não vai funcionar se você...
+                        </h3>
+                    </div>
+
+                    <ul class="space-y-6 flex-grow">
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-xmark text-lightGray/40 mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-lightGray/80 text-base leading-[1.6]">
+                                Busca fórmulas mágicas ou promessas irreais de "10 mil seguidores em uma semana".
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-xmark text-lightGray/40 mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-lightGray/80 text-base leading-[1.6]">
+                                Quer apenas um "sobrinho" para fazer posts aleatórios sem nenhum objetivo de venda.
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-xmark text-lightGray/40 mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-lightGray/80 text-base leading-[1.6]">
+                                Não está disposta a investir tempo e recursos no crescimento profissional da sua marca.
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fa-solid fa-xmark text-lightGray/40 mt-[6px] text-sm shrink-0"></i>
+                            <span class="font-sans font-light text-lightGray/80 text-base leading-[1.6]">
+                                Acredita que marketing digital se resume apenas a fazer dancinhas nas redes sociais.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-a-mentora" class="relative w-full py-24 md:py-32 bg-offWhite overflow-hidden z-10">
+
+        <div class="container mx-auto px-6 lg:px-12 max-w-[1200px] relative z-10">
+
+            <div class="flex flex-col md:flex-row items-center md:items-stretch gap-12 lg:gap-20">
+
+                <div class="w-full md:w-[45%] relative reveal-left flex items-center justify-center mt-4 md:mt-0">
+
+                    <div
+                        class="absolute inset-0 bg-petrolBlue transform -translate-x-4 translate-y-4 md:-translate-x-6 md:translate-y-6 rounded-2xl z-0 shadow-lg">
+                    </div>
+
+                    <div
+                        class="relative z-10 w-full h-[400px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl bg-leadGray">
+                        <img src="1.jpg" alt="Tatiane - Estrategista TCS"
+                            class="parallax-img w-full h-[120%] object-cover object-center -mt-[10%] filter contrast-[1.05]">
+
+                        <div
+                            class="absolute bottom-6 -right-2 md:-right-6 bg-white/20 backdrop-blur-lg border border-white/40 p-4 lg:p-5 rounded-xl shadow-[0_10px_40px_rgba(0,59,70,0.2)] reveal-up reveal-delay-400 max-w-[160px] lg:max-w-[180px]">
+                            <p class="text-petrolBlue font-serif font-bold text-3xl leading-none mb-1">+150</p>
+                            <p
+                                class="text-leadGray font-sans text-[10px] lg:text-xs font-bold uppercase tracking-widest leading-tight">
+                                Marcas Elevadas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-[55%] flex flex-col justify-center text-left md:pl-8 lg:pl-12">
+
+                    <span
+                        class="font-sans font-bold text-copperGold text-xs md:text-sm tracking-[2px] uppercase mb-4 reveal-up">
+                        A mente por trás do método
+                    </span>
+
+                    <h2
+                        class="font-serif text-leadGray text-4xl md:text-5xl lg:text-6xl font-medium mb-8 leading-[1.1] reveal-up reveal-delay-100">
+                        Muito prazer, <br class="hidden md:block">
+                        <span class="italic text-petrolBlue">eu sou a Tatiane.</span>
+                    </h2>
+
+                    <div class="space-y-6 text-[#7A7A7A] font-sans font-light text-base md:text-lg leading-[1.8]">
+
+                        <p class="reveal-up reveal-delay-200">
+                            Há anos atuando nos bastidores, percebi que o maior gargalo das empresas não era a falta de
+                            qualidade em seus serviços, mas a exaustão de tentar comunicar isso no digital sem sucesso.
+                        </p>
+
+                        <p class="reveal-up reveal-delay-300">
+                            Foi por ver empreendedoras incríveis presas em rotinas operacionais e perfis amadores que
+                            desenvolvi o <strong class="text-leadGray font-medium">Método TCS</strong>. Minha missão é
+                            construir a presença digital de empresas para que elas vendam posicionamento, não apenas
+                            produtos.
+                        </p>
+
+                        <p class="reveal-up reveal-delay-400">
+                            Mais do que uma assistência virtual, eu ofereço <strong
+                                class="text-copperGold font-medium">estratégia e tempo</strong> para que você volte a
+                            ser a dona do seu negócio.
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="mt-14 reveal-up reveal-delay-500 flex flex-col items-start ml-2 relative group cursor-default select-none">
+
+                        <div
+                            class="transform -rotate-6 origin-bottom-left transition-transform duration-700 group-hover:-rotate-3">
+                            <span
+                                class="text-6xl md:text-7xl lg:text-[5rem] tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-copperGold via-[#c8a175] to-[#8a6845] filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] block"
+                                style="font-family: 'Allura', cursive; line-height: 1;">
+                                Tatiane
+                            </span>
+                        </div>
+
+                        <div
+                            class="mt-2 ml-6 flex items-center gap-3 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="w-10 h-[1px] bg-copperGold/60"></div>
+                            <span
+                                class="font-sans text-[10px] md:text-xs text-petrolBlue uppercase tracking-[0.3em] font-bold">
+                                Fundadora & Estrategista
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prova-social" class="relative w-full py-24 md:py-32 bg-[#2A2A2A] overflow-hidden z-10">
+
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full md:w-[80%] md:h-[60%] bg-petrolBlue/10 blur-[120px] rounded-full pointer-events-none z-0">
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+
+            <div class="text-center mb-16 md:mb-20">
+                <span
+                    class="font-sans font-bold text-copperGold text-xs md:text-sm tracking-[2px] uppercase mb-4 block reveal-up">
+                    Resultados Reais
+                </span>
+                <h2
+                    class="font-serif text-offWhite text-3xl md:text-4xl lg:text-5xl font-medium leading-tight reveal-up reveal-delay-100">
+                    O que dizem as empreendedoras <br class="hidden md:block">
+                    que <span class="italic text-copperGold">já saíram dos bastidores.</span>
+                </h2>
+            </div>
+        </div>
+
+        <div class="w-full relative z-20 px-4 md:px-12 lg:px-20 mx-auto max-w-[1400px] reveal-up reveal-delay-200">
+
+            <div class="swiper swiper-depoimentos pb-16">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide h-auto">
+                        <div
+                            class="h-full flex flex-col bg-[#333333] border border-offWhite/10 rounded-2xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.3)] select-none">
+
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-14 h-14 rounded-full border-2 border-copperGold/40 overflow-hidden shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop"
+                                        alt="Foto da Cliente" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-sans font-bold text-offWhite text-base mb-1">Camila B.</h4>
+                                    <span
+                                        class="font-sans text-[10px] uppercase tracking-widest text-lightGray/70">Estética
+                                        High-End</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-1 mb-6">
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                            </div>
+
+                            <p
+                                class="font-sans font-light text-lightGray text-base md:text-lg leading-relaxed flex-grow italic">
+                                "Eu passava 3 horas do meu dia pensando no que postar e, no final, os clientes só
+                                queriam desconto. Depois da mentoria, reorganizamos toda a minha vitrine. Hoje, eu fecho
+                                pacotes premium porque meu posicionamento finalmente grita autoridade."
+                            </p>
+
+                            <div class="mt-8 pt-6 border-t border-offWhite/5">
+                                <button
+                                    class="group inline-flex items-center gap-2 text-xs font-sans font-medium uppercase tracking-widest text-lightGray/50 hover:text-copperGold transition-colors">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <span>Ver Print Original</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide h-auto">
+                        <div
+                            class="h-full flex flex-col bg-[#333333] border border-offWhite/10 rounded-2xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.3)] select-none">
+
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-14 h-14 rounded-full border-2 border-copperGold/40 overflow-hidden shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=200&auto=format&fit=crop"
+                                        alt="Foto da Cliente" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-sans font-bold text-offWhite text-base mb-1">Dra. Juliana S.</h4>
+                                    <span
+                                        class="font-sans text-[10px] uppercase tracking-widest text-lightGray/70">Harmonização
+                                        Facial</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-1 mb-6">
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                            </div>
+
+                            <p
+                                class="font-sans font-light text-lightGray text-base md:text-lg leading-relaxed flex-grow italic">
+                                "Eu tinha excelentes resultados no consultório, mas meu Instagram era uma confusão. A
+                                Tatiane mudou o jogo. Ela não só organizou a 'casa', como criou uma jornada de conteúdo
+                                que atrai pacientes prontas para investir, sem questionar o preço."
+                            </p>
+
+                            <div class="mt-8 pt-6 border-t border-offWhite/5">
+                                <button
+                                    class="group inline-flex items-center gap-2 text-xs font-sans font-medium uppercase tracking-widest text-lightGray/50 hover:text-copperGold transition-colors">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <span>Ver Print Original</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide h-auto">
+                        <div
+                            class="h-full flex flex-col bg-[#333333] border border-offWhite/10 rounded-2xl p-8 shadow-[0_10px_30px_rgba(0,0,0,0.3)] select-none">
+
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-14 h-14 rounded-full border-2 border-copperGold/40 overflow-hidden shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop"
+                                        alt="Foto da Cliente" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 class="font-sans font-bold text-offWhite text-base mb-1">Mariana T.</h4>
+                                    <span
+                                        class="font-sans text-[10px] uppercase tracking-widest text-lightGray/70">Arquitetura
+                                        de Interiores</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-1 mb-6">
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                                <i class="fa-solid fa-star text-copperGold text-sm"></i>
+                            </div>
+
+                            <p
+                                class="font-sans font-light text-lightGray text-base md:text-lg leading-relaxed flex-grow italic">
+                                "Sempre acreditei que para vender na internet eu precisaria fazer dancinha ou me expor o
+                                tempo todo. O Método TCS me mostrou o caminho elegante. Hoje, os meus projetos chegam
+                                através de um portfólio digital estruturado para encantar."
+                            </p>
+
+                            <div class="mt-8 pt-6 border-t border-offWhite/5">
+                                <button
+                                    class="group inline-flex items-center gap-2 text-xs font-sans font-medium uppercase tracking-widest text-lightGray/50 hover:text-copperGold transition-colors">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <span>Ver Print Original</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="swiper-pagination mt-10"></div>
+
+                <div
+                    class="absolute top-[40%] -left-6 md:-left-12 z-10 swiper-button-prev-custom w-12 h-12 rounded-full bg-leadGray border border-offWhite/10 flex items-center justify-center cursor-pointer hover:bg-copperGold hover:border-copperGold transition-colors shadow-lg hidden lg:flex">
+                    <i class="fa-solid fa-chevron-left text-offWhite text-lg"></i>
+                </div>
+                <div
+                    class="absolute top-[40%] -right-6 md:-right-12 z-10 swiper-button-next-custom w-12 h-12 rounded-full bg-leadGray border border-offWhite/10 flex items-center justify-center cursor-pointer hover:bg-copperGold hover:border-copperGold transition-colors shadow-lg hidden lg:flex">
+                    <i class="fa-solid fa-chevron-right text-offWhite text-lg"></i>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta" class="relative w-full py-24 md:py-32 bg-offWhite overflow-hidden z-10 pb-32 md:pb-32">
+
+        <div
+            class="absolute top-1/2 right-[10%] transform -translate-y-1/2 w-[400px] h-[400px] bg-petrolBlue/5 blur-[100px] rounded-full pointer-events-none z-0 hidden lg:block">
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-12 max-w-[1200px] relative z-10">
+
+            <div class="text-center mb-16 md:mb-20">
+                <h2
+                    class="font-serif text-leadGray text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight reveal-up">
+                    O próximo passo para o seu <br class="hidden md:block">
+                    <span class="italic text-copperGold">posicionamento premium.</span>
+                </h2>
+                <p
+                    class="font-sans font-light text-gray-500 text-base md:text-lg max-w-2xl mx-auto reveal-up reveal-delay-100">
+                    Tudo o que você precisa para sair dos bastidores, construir autoridade real e atrair clientes de
+                    alto valor.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center lg:items-stretch gap-12 lg:gap-16">
+
+                <div class="w-full lg:w-[55%] flex flex-col justify-center reveal-left">
+
+                    <h3 class="font-sans font-bold text-leadGray text-xl md:text-2xl mb-8 flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-copperGold"></i>
+                        O que está incluso na Assessoria TCS:
+                    </h3>
+
+                    <ul class="space-y-5 mb-8">
+                        <li class="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-colors duration-300">
+                            <div
+                                class="w-6 h-6 rounded-full bg-petrolBlue/10 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-petrolBlue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-bold text-leadGray text-base md:text-lg">Assessoria
+                                    Estratégica 360º</h4>
+                                <p class="font-sans font-light text-gray-500 text-sm md:text-base mt-1">Mapeamento
+                                    completo do seu momento atual e definição de metas claras.</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-colors duration-300">
+                            <div
+                                class="w-6 h-6 rounded-full bg-petrolBlue/10 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-petrolBlue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-bold text-leadGray text-base md:text-lg">Otimização de Vitrine
+                                    (Perfil)</h4>
+                                <p class="font-sans font-light text-gray-500 text-sm md:text-base mt-1">Reestruturação
+                                    de Bio, Destaques estratégicos e Links focados em alta conversão.</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-colors duration-300">
+                            <div
+                                class="w-6 h-6 rounded-full bg-petrolBlue/10 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-petrolBlue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-bold text-leadGray text-base md:text-lg">Linha Editorial
+                                    High-End</h4>
+                                <p class="font-sans font-light text-gray-500 text-sm md:text-base mt-1">O fim do
+                                    bloqueio criativo. Definição exata do que postar para o seu público-alvo.</p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-4 p-4 rounded-xl hover:bg-white transition-colors duration-300">
+                            <div
+                                class="w-6 h-6 rounded-full bg-petrolBlue/10 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-petrolBlue text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-bold text-leadGray text-base md:text-lg">Roteiros e Posts
+                                    Estratégicos</h4>
+                                <p class="font-sans font-light text-gray-500 text-sm md:text-base mt-1">4 modelos de
+                                    conteúdo direcionados para atrair clientes dispostos a pagar pelo seu valor.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div
+                        class="bg-copperGold/5 border border-copperGold/20 rounded-xl p-6 relative overflow-hidden group">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-copperGold/10 to-transparent rounded-bl-full z-0">
+                        </div>
+                        <div class="relative z-10 flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-copperGold flex items-center justify-center shrink-0 text-white shadow-lg">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <div>
+                                <span
+                                    class="font-sans font-bold text-copperGold text-xs tracking-widest uppercase mb-1 block">Bônus
+                                    Exclusivo (Acesso Imediato)</span>
+                                <h4 class="font-serif italic text-leadGray text-xl font-medium mb-2">Comunidade VIP +
+                                    Suporte TCS</h4>
+                                <p class="font-sans font-light text-gray-600 text-sm leading-relaxed">
+                                    Acesso direto a um ecossistema de empreendedoras e direcionamento contínuo para você
+                                    nunca mais travar na execução.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-[45%] reveal-right reveal-delay-200">
+                    <div
+                        class="bg-white border-2 border-petrolBlue rounded-2xl p-8 md:p-10 shadow-[0_15px_40px_rgba(0,59,70,0.1)] relative flex flex-col items-center text-center">
+
+                        <div
+                            class="absolute -top-4 bg-petrolBlue text-white font-sans font-bold text-[10px] md:text-xs uppercase tracking-widest px-6 py-2 rounded-full shadow-lg">
+                            Vagas Limitadas
+                        </div>
+
+                        <h3 class="font-sans font-semibold text-leadGray text-xl mb-2 mt-4">Acesso Completo ao Método
+                        </h3>
+                        <p class="font-sans font-light text-gray-400 text-sm mb-8">Acompanhamento e Estratégia Digital
+                        </p>
+
+                        <div class="flex flex-col items-center mb-8 w-full">
+                            <span class="text-gray-400 line-through text-sm md:text-base font-medium mb-1">De R$
+                                1.997,00 por apenas:</span>
+                            <div class="flex items-start text-copperGold justify-center">
+                                <span class="text-xl font-bold mt-2 mr-1">12x</span>
+                                <span class="text-xl font-bold mt-2 mr-2">R$</span>
+                                <span class="text-5xl md:text-6xl font-black tracking-tighter leading-none">99</span>
+                                <span class="text-2xl font-bold mt-1">,70</span>
+                            </div>
+                            <span class="text-gray-500 text-sm mt-3 font-medium">ou R$ 997,00 à vista</span>
+                        </div>
+
+                        <a href="#link-checkout"
+                            class="btn-pulse-custom w-full bg-petrolBlue text-white font-sans font-bold text-sm md:text-base uppercase tracking-widest py-5 rounded-lg shadow-[0_10px_20px_rgba(0,59,70,0.3)] hover:brightness-110 transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-lock text-white/80"></i>
+                            Garantir Minha Vaga Agora
+                        </a>
+
+                        <div class="mt-6 pt-6 border-t border-gray-100 w-full flex flex-col gap-3">
+                            <div class="flex items-center justify-center gap-2 text-gray-500 text-xs">
+                                <i class="fa-solid fa-shield-halved text-green-600"></i>
+                                <span>Ambiente de pagamento 100% seguro</span>
+                            </div>
+                            <div class="flex items-center justify-center gap-2 text-gray-500 text-xs">
+                                <i class="fa-solid fa-calendar-check text-copperGold"></i>
+                                <span>Garantia incondicional de 7 dias</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div
+        class="md:hidden fixed bottom-0 left-0 w-full p-4 bg-white/90 backdrop-blur-md border-t border-gray-200 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] z-50 transform transition-transform duration-300">
+        <a href="#link-checkout"
+            class="w-full bg-petrolBlue text-white font-sans font-bold text-sm uppercase tracking-widest py-4 rounded-lg shadow-lg flex items-center justify-center gap-2">
+            Quero Começar Agora
+        </a>
+    </div>
+
+    <section id="faq" class="relative w-full py-24 md:py-32 bg-offWhite z-10">
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            
+            <div class="text-center mb-16 reveal-up">
+                <h2 class="font-serif text-leadGray text-3xl md:text-4xl lg:text-5xl font-medium mb-4">
+                    Ainda tem dúvidas sobre o <span class="italic text-copperGold">Método TCS?</span>
+                </h2>
+            </div>
+
+            <div class="max-w-[800px] mx-auto reveal-up reveal-delay-100">
+                
+                <div class="faq-item border-b border-lightGray">
+                    <button class="faq-btn w-full text-left py-5 min-h-[60px] flex justify-between items-center group cursor-pointer" aria-expanded="false">
+                        <span class="font-sans font-bold text-leadGray text-base md:text-lg pr-8 group-hover:text-petrolBlue transition-colors duration-300">
+                            Eu preciso entregar as senhas do meu perfil?
+                        </span>
+                        <div class="w-6 h-6 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-plus text-leadGray text-lg transition-all duration-300 transform group-[.active]:rotate-45 group-[.active]:text-copperGold"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="font-sans font-light text-gray-500 text-sm md:text-base leading-relaxed pb-6 pr-4 md:pr-12">
+                            Não. O método ensina o posicionamento estratégico e te dá os direcionamentos exatos. A execução das publicações pode ser feita por você ou pela sua equipe atual, mas agora com um alvo claro e estratégico.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-lightGray">
+                    <button class="faq-btn w-full text-left py-5 min-h-[60px] flex justify-between items-center group cursor-pointer" aria-expanded="false">
+                        <span class="font-sans font-bold text-leadGray text-base md:text-lg pr-8 group-hover:text-petrolBlue transition-colors duration-300">
+                            Funciona para quem está começando o perfil do zero?
+                        </span>
+                        <div class="w-6 h-6 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-plus text-leadGray text-lg transition-all duration-300 transform group-[.active]:rotate-45 group-[.active]:text-copperGold"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="font-sans font-light text-gray-500 text-sm md:text-base leading-relaxed pb-6 pr-4 md:pr-12">
+                            Sim! Inclusive, é o cenário ideal, pois você não trará vícios antigos. Construirá uma base de seguidores 100% qualificada desde o primeiro dia, focando em atração de clientes e não em métricas de vaidade.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-lightGray">
+                    <button class="faq-btn w-full text-left py-5 min-h-[60px] flex justify-between items-center group cursor-pointer" aria-expanded="false">
+                        <span class="font-sans font-bold text-leadGray text-base md:text-lg pr-8 group-hover:text-petrolBlue transition-colors duration-300">
+                            E se eu não tiver tempo para aplicar a mentoria?
+                        </span>
+                        <div class="w-6 h-6 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-plus text-leadGray text-lg transition-all duration-300 transform group-[.active]:rotate-45 group-[.active]:text-copperGold"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                        <p class="font-sans font-light text-gray-500 text-sm md:text-base leading-relaxed pb-6 pr-4 md:pr-12">
+                            O objetivo do Método TCS é justamente te DEVOLVER tempo. O tempo que você gasta hoje tentando descobrir o que postar, sofrendo bloqueio criativo e apagando incêndios, será drasticamente reduzido com os nossos processos validados.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative w-full py-28 md:py-36 bg-petrolBlue overflow-hidden z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.15)]">
+        
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none mix-blend-overlay"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[300px] bg-white/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+            
+            <h2 class="font-serif text-offWhite text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] mb-6 max-w-4xl reveal-up">
+                O seu negócio não pode mais esperar por você nos <span class="italic text-copperGold">bastidores.</span>
+            </h2>
+            
+            <p class="font-sans font-light text-lightGray text-lg md:text-xl max-w-2xl mb-12 reveal-up reveal-delay-100">
+                Assuma a linha de frente da sua empresa. Deixe o Método TCS cuidar da sua vitrine digital.
+            </p>
+
+            <div class="w-full md:w-auto px-4 md:px-0 reveal-up reveal-delay-200">
+                <a href="#link-checkout" class="btn-glow-pulse flex items-center justify-center w-full md:w-auto bg-copperGold text-white font-sans font-bold text-[18px] uppercase tracking-widest px-10 py-5 md:py-6 rounded-lg transition-transform duration-300 hover:-translate-y-1">
+                    Quero Assumir o Controle da Minha Marca
+                </a>
+            </div>
+
+            <div class="mt-8 flex items-center gap-2 text-white/50 text-xs font-sans uppercase tracking-widest reveal-up reveal-delay-300">
+                <i class="fa-solid fa-lock"></i> Vagas Limitadas
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="w-full bg-[#2A2A2A] py-12 border-t border-white/5 relative z-10">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            
+            <div class="mb-6 opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <h2 class="font-serif italic text-2xl tracking-widest text-offWhite">TCS</h2>
+            </div>
+
+            <p class="font-sans text-xs text-lightGray/50 text-center mb-6 leading-relaxed">
+                © 2026 Tatiane | Assistente Virtual & Estrategista. <br class="md:hidden">Todos os direitos reservados.
+            </p>
+
+            <div class="flex items-center gap-4 text-[10px] md:text-xs font-sans uppercase tracking-widest text-lightGray/40">
+                <a href="#" class="hover:text-copperGold transition-colors">Termos de Uso</a>
+                <span>|</span>
+                <a href="#" class="hover:text-copperGold transition-colors">Políticas de Privacidade</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // observer.unobserve(entry.target); // Descomente para animar apenas 1x
+                    }
+                });
+            }, revealOptions);
+
+            // Observa todas as variações de movimento
+            document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-item').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            const parallaxImg = document.querySelector('.parallax-img');
+
+            // Verifica se não é mobile para aplicar o parallax (evita bugs de scroll no celular)
+            if (parallaxImg && window.innerWidth > 768) {
+                let lastScrollY = window.scrollY;
+                let ticking = false;
+
+                const updateParallax = () => {
+                    const rect = parallaxImg.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+
+                    // Aplica o efeito apenas quando a imagem está na tela (viewport)
+                    if (rect.top <= windowHeight && rect.bottom >= 0) {
+                        // Calcula o deslocamento. Ajuste o divisor (8) para mais ou menos intensidade
+                        const yPos = (rect.top / windowHeight) * 15;
+                        parallaxImg.style.transform = `translateY(${yPos}%) scale(1.1)`; // scale mantém as bordas cobertas
+                    }
+                    ticking = false;
+                };
+
+                window.addEventListener('scroll', () => {
+                    lastScrollY = window.scrollY;
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateParallax);
+                        ticking = true;
+                    }
+                }, { passive: true }); // passive: true melhora a performance de scroll no navegador
+            }
+
+            const swiper = new Swiper('.swiper-depoimentos', {
+                // Layout Escalonado (Mostra partes dos cartões adjacentes)
+                slidesPerView: 'auto',
+                centeredSlides: true, // Card principal fica no centro
+                spaceBetween: 24, // Gap de 24px
+                loop: true, // Rotação infinita
+                grabCursor: true, // Ícone de mãozinha para clique e arraste
+
+                // Autoplay inteligente (Briefing atendido)
+                autoplay: {
+                    delay: 4000, // 4 segundos padrão
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true, // OBRIGATÓRIO: pausa ao ler o depoimento
+                },
+
+                // Navegação via botões laterais (setas customizadas)
+                navigation: {
+                    nextEl: '.swiper-button-next-custom',
+                    prevEl: '.swiper-button-prev-custom',
+                },
+
+                // Navegação via bolinhas (dots)
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+
+                // Responsividade Mobile Ajustada
+                breakpoints: {
+                    // Mobile Padrão
+                    320: {
+                        spaceBetween: 16,
+                        autoplay: {
+                            delay: 5000, // Tempo maior no mobile para facilitar a leitura
+                        }
+                    },
+                    // Tablets
+                    768: {
+                        spaceBetween: 24,
+                    },
+                    // Desktops e Monitores grandes
+                    1024: {
+                        spaceBetween: 32,
+                    }
+                }
+            });
+
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const btn = item.querySelector('.faq-btn');
+                const content = item.querySelector('.faq-content');
+
+                btn.addEventListener('click', () => {
+                    const isActive = btn.classList.contains('active');
+
+                    // Lógica de Auto-Close: Fecha todos os outros antes de abrir o novo
+                    faqItems.forEach(otherItem => {
+                        const otherBtn = otherItem.querySelector('.faq-btn');
+                        const otherContent = otherItem.querySelector('.faq-content');
+                        
+                        otherBtn.classList.remove('active');
+                        otherBtn.setAttribute('aria-expanded', 'false');
+                        otherContent.style.maxHeight = null;
+                    });
+
+                    // Se não estava ativo, abre. Se já estava, deixa fechado (toggle).
+                    if (!isActive) {
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-expanded', 'true');
+                        // Usa o scrollHeight para saber o tamanho exato do texto e deslizar perfeitamente
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+
+            const navbar = document.getElementById('navbar');
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            // 1. Efeito Glassmorphism no Scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    // Adiciona fundo escuro com blur quando rola a página
+                    navbar.classList.remove('bg-transparent', 'border-transparent');
+                    navbar.classList.add('bg-leadGray/90', 'backdrop-blur-md', 'border-offWhite/10', 'shadow-lg');
+                } else {
+                    // Volta a ser transparente no topo
+                    navbar.classList.add('bg-transparent', 'border-transparent');
+                    navbar.classList.remove('bg-leadGray/90', 'backdrop-blur-md', 'border-offWhite/10', 'shadow-lg');
+                }
+            });
+
+            // 2. Toggle do Menu Mobile
+            const toggleMenu = () => {
+                isMenuOpen = !isMenuOpen;
+                const icon = mobileBtn.querySelector('i');
+                
+                if (isMenuOpen) {
+                    // Abre o menu
+                    mobileOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                    mobileOverlay.classList.add('opacity-100', 'pointer-events-auto');
+                    // Muda o ícone para "X"
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    // Fecha o menu
+                    mobileOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+                    mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+                    // Volta o ícone para hamburger
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            };
+
+            mobileBtn.addEventListener('click', toggleMenu);
+
+            // 3. Fecha o menu ao clicar em qualquer link (Crucial para UX Mobile)
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMenuOpen) toggleMenu();
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
