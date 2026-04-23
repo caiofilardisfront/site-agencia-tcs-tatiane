@@ -280,59 +280,81 @@
 
 <body class="font-sans antialiased">
 
- <header id="navbar" class="top-0 left-0 w-full z-[2] transition-all duration-500 bg-transparent border-b border-transparent">
-    
-    <!-- Barra Principal Fixa -->
-    <div class="container mx-auto px-6 lg:px-12 max-w-[1400px] h-20 flex justify-between items-center relative z-50">
-        
-        <!-- Logo -->
-        <a href="#" class="relative flex items-center group">
-            <img src="logo-tcs.svg" alt="TCS - Estratégia Digital & Posicionamento"
-                class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
-        </a>
+    <header id="navbar"
+        class="top-0 left-0 w-full z-[2] transition-all duration-500 bg-transparent border-b border-transparent">
 
-        <!-- Nav Desktop -->
-        <nav class="hidden lg:flex items-center gap-8">
-            <a href="#problema-solucao" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">O Problema</a>
-            <a href="#transformacao" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">O Método</a>
-            <a href="#sobre-a-mentora" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">A Mentora</a>
-            <a href="#prova-social" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">Resultados</a>
-            <a href="#faq" class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">FAQ</a>
-        </nav>
+        <!-- Barra Principal Fixa -->
+        <div
+            class="container mx-auto px-6 lg:px-12 max-w-[1400px] h-20 flex justify-between items-center relative z-50">
 
-        <!-- Botões e Menu Toggle -->
-        <div class="flex items-center gap-6">
-            <a href="#oferta" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 border border-copperGold text-copperGold font-sans text-xs font-bold uppercase tracking-widest rounded-md hover:bg-copperGold hover:text-white transition-all duration-300">
-                Aplicar Agora
+            <!-- Logo -->
+            <a href="#" class="relative flex items-center group">
+                <img src="logo-tcs.svg" alt="TCS - Estratégia Digital & Posicionamento"
+                    class="h-20 md:h-30 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
             </a>
-            <!-- Botão Hamburguer com Z-index super elevado para não sumir -->
-            <button id="mobile-menu-btn" class="lg:hidden text-offWhite hover:text-copperGold focus:outline-none transition-colors relative z-[3]">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
+
+            <!-- Nav Desktop -->
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#problema-solucao"
+                    class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">O
+                    Problema</a>
+                <a href="#transformacao"
+                    class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">O
+                    Método</a>
+                <a href="#sobre-a-mentora"
+                    class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">A
+                    Mentora</a>
+                <a href="#prova-social"
+                    class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">Resultados</a>
+                <a href="#faq"
+                    class="font-sans text-sm font-medium text-offWhite hover:text-copperGold transition-colors uppercase tracking-widest">FAQ</a>
+            </nav>
+
+            <!-- Botões e Menu Toggle -->
+            <div class="flex items-center gap-6">
+                <a href="#oferta"
+                    class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 border border-copperGold text-copperGold font-sans text-xs font-bold uppercase tracking-widest rounded-md hover:bg-copperGold hover:text-white transition-all duration-300">
+                    Aplicar Agora
+                </a>
+                <!-- Botão Hamburguer com Z-index super elevado para não sumir -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-offWhite hover:text-copperGold focus:outline-none transition-colors relative z-[3]">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
         </div>
-    </div>
 
-    <!-- Overlay Mobile (Fundo Desfocado com Card Branco) -->
-    <div id="mobile-overlay"
-        class="fixed top-0 left-0 w-full h-[100dvh] bg-leadGray/80 backdrop-blur-sm flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-40 px-6">
-        
-        <!-- Cartão Branco das Opções (Estilo Premium App) -->
-        <nav class="bg-white w-full max-w-[360px] rounded-3xl p-8 flex flex-col items-center gap-6 text-center shadow-[0_30px_60px_rgba(0,0,0,0.4)] mt-12">
-            
-            <a href="#problema-solucao" class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">O Problema</a>
-            <a href="#transformacao" class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">O Método</a>
-            <a href="#sobre-a-mentora" class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">A Mentora</a>
-            <a href="#prova-social" class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">Resultados</a>
-            <a href="#faq" class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">FAQ</a>
+        <!-- Overlay Mobile (Fundo Desfocado com Card Branco) -->
+        <div id="mobile-overlay"
+            class="fixed top-0 left-0 w-full h-[100dvh] bg-leadGray/80 backdrop-blur-sm flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500 z-40 px-6">
 
-            <div class="w-12 h-px bg-copperGold/40 my-2"></div>
+            <!-- Cartão Branco das Opções (Estilo Premium App) -->
+            <nav
+                class="bg-white w-full max-w-[360px] rounded-3xl p-8 flex flex-col items-center gap-6 text-center shadow-[0_30px_60px_rgba(0,0,0,0.4)] mt-12">
 
-            <a href="#oferta" class="mobile-link bg-copperGold text-white font-sans font-bold text-[13px] uppercase tracking-widest px-8 py-4 rounded-xl w-full shadow-[0_10px_20px_rgba(193,154,107,0.3)] active:scale-95 transition-all duration-300">
-                Aplicar Agora
-            </a>
-        </nav>
-    </div>
-</header>
+                <a href="#problema-solucao"
+                    class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">O
+                    Problema</a>
+                <a href="#transformacao"
+                    class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">O
+                    Método</a>
+                <a href="#sobre-a-mentora"
+                    class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">A
+                    Mentora</a>
+                <a href="#prova-social"
+                    class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">Resultados</a>
+                <a href="#faq"
+                    class="mobile-link font-serif italic text-[22px] text-leadGray hover:text-copperGold transition-colors">FAQ</a>
+
+                <div class="w-12 h-px bg-copperGold/40 my-2"></div>
+
+                <a href="#oferta"
+                    class="mobile-link bg-copperGold text-white font-sans font-bold text-[13px] uppercase tracking-widest px-8 py-4 rounded-xl w-full shadow-[0_10px_20px_rgba(193,154,107,0.3)] active:scale-95 transition-all duration-300">
+                    Aplicar Agora
+                </a>
+            </nav>
+        </div>
+    </header>
 
     <section
         class="relative w-full min-h-screen flex items-center justify-center bg-leadGray overflow-hidden pt-20 md:pt-0">
@@ -1526,18 +1548,75 @@
 
     <footer class="w-full bg-[#2A2A2A] py-12 border-t border-white/5 relative z-10">
         <div class="container mx-auto px-6 flex flex-col items-center">
-            <div class="mb-6 opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <h2 class="font-serif italic text-2xl tracking-widest text-offWhite">TCS</h2>
+
+            <!-- Logo -->
+            <div class="mb-8 opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <!-- Logo -->
+                <a href="#" class="relative flex items-center group">
+                    <img src="logo-tcs.svg" alt="TCS - Estratégia Digital & Posicionamento"
+                        class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                </a>
             </div>
+
+            <!-- Redes Sociais Premium -->
+            <div class="flex items-center justify-center flex-wrap gap-4 mb-10">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/tcsassistentevirtual?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    target="_blank" rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-lightGray border border-white/10 hover:bg-copperGold hover:text-white hover:border-copperGold transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-[0_5px_15px_rgba(193,154,107,0.4)] group"
+                    aria-label="Instagram">
+                    <i
+                        class="fa-brands fa-instagram text-sm group-hover:scale-110 transition-transform duration-300"></i>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@tcsassistentevirtual?_r=1&_t=ZS-95mdZYwKnx7" target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-lightGray border border-white/10 hover:bg-copperGold hover:text-white hover:border-copperGold transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-[0_5px_15px_rgba(193,154,107,0.4)] group"
+                    aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok text-sm group-hover:scale-110 transition-transform duration-300"></i>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/@tcsassistentevirtual?si=vbzgCXLhP_qEUu8k" target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-lightGray border border-white/10 hover:bg-copperGold hover:text-white hover:border-copperGold transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-[0_5px_15px_rgba(193,154,107,0.4)] group"
+                    aria-label="YouTube">
+                    <i class="fa-brands fa-youtube text-sm group-hover:scale-110 transition-transform duration-300"></i>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1LHaeVTfPH/?mibextid=wwXIfr" target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-lightGray border border-white/10 hover:bg-copperGold hover:text-white hover:border-copperGold transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-[0_5px_15px_rgba(193,154,107,0.4)] group"
+                    aria-label="Facebook">
+                    <i
+                        class="fa-brands fa-facebook-f text-sm group-hover:scale-110 transition-transform duration-300"></i>
+                </a>
+
+                <!-- WhatsApp (Canal de Conversão - Leve Destaque) -->
+                <a href="https://wa.me/5521994159541?text=Ol%C3%A1%2C%20Tati!%0AVim%20do%20seu%20site!%0AQuero%20saber%20mais%20sobre%20seus%20servi%C3%A7os!"
+                    target="_blank" rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-full bg-copperGold/10 flex items-center justify-center text-copperGold border border-copperGold/30 hover:bg-copperGold hover:text-white hover:border-copperGold transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-[0_5px_15px_rgba(193,154,107,0.4)] group"
+                    aria-label="WhatsApp">
+                    <i
+                        class="fa-brands fa-whatsapp text-sm group-hover:scale-110 transition-transform duration-300"></i>
+                </a>
+            </div>
+
+            <!-- Direitos Autorais -->
             <p class="font-sans text-xs text-lightGray/50 text-center mb-6 leading-relaxed">
                 © 2026 Tatiane | Assistente Virtual & Estrategista. <br class="md:hidden">Todos os direitos reservados.
             </p>
+
+            <!-- Links Legais -->
             <div
                 class="flex items-center gap-4 text-[10px] md:text-xs font-sans uppercase tracking-widest text-lightGray/40">
                 <a href="#" class="hover:text-copperGold transition-colors">Termos de Uso</a>
                 <span>|</span>
                 <a href="#" class="hover:text-copperGold transition-colors">Políticas de Privacidade</a>
             </div>
+
         </div>
     </footer>
 
